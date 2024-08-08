@@ -91,12 +91,13 @@ const printMenu = function () {
 //   100000,
 //   2000
 // );
-// // accountRepository.addAccount(account0);
-// // accountRepository.addAccount(account2);
+// accountRepository.addAccount(account0);
+// accountRepository.addAccount(account2);
 // accountRepository.addAccount(account);
 // accountRepository.addAccount(account3);
 // accountRepository.addAccount(minusAccount);
 // accountRepository.addAccount(upaccount);
+
 const app = async function () {
   console.log(
     `====================================================================`
@@ -163,7 +164,7 @@ const app = async function () {
         // 계좌번호와 입금액 입력 받아 입금 처리
         let inputNo = await readLine('- 계좌번호 : ');
         let inputMoney = parseInt(await readLine('- 입금액 : '));
-        console.log(inputNo, inputMoney);
+        // console.log(inputNo, inputMoney);
         console.log('입금에 따른 메시지 출력');
         index = accountRepository.findByNumber(inputNo.toString());
         accountRepository._accounts[index].Add(inputMoney);
@@ -173,7 +174,7 @@ const app = async function () {
         // 계좌번호와 출금액 입력 받아 출금 처리
         let outputNo = await readLine('- 계좌번호 : ');
         let outputMoney = parseInt(await readLine('- 출금액 : '));
-        console.log(outputNo, outputMoney);
+        // console.log(outputNo, outputMoney);
         console.log('출금에 따른 메시지 출력');
         index = accountRepository.findByNumber(outputNo.toString());
         accountRepository._accounts[index].out(outputMoney);
@@ -182,10 +183,12 @@ const app = async function () {
       case 5: // 계좌번호로 검색
         // 계좌 번호 입력 받아 계좌 정보 출력
         let searchNum = await readLine('- 계좌번호 : ');
-        console.log(searchNum);
-        console.log('검색 결과 출력');
+        // console.log(searchNum);
         index = accountRepository.findByNumber(searchNum.toString());
-
+        console.log(
+          '검색 결과 출력 :',
+          accountRepository && accountRepository._accounts[index]
+        );
         saveAccounts(accountRepository && accountRepository._accounts[index]);
         break;
       case 6:

@@ -20,7 +20,6 @@ class AccountRepositories {
     const is = this.accounts.some((is) => is.number === account.number);
     if (!is) {
       this.accounts.push(account);
-
       return true;
     } else {
       return false;
@@ -41,7 +40,8 @@ class AccountRepositories {
           onwer: item.onwer,
           balance: item.balance,
           loan: item.loan,
-          pw: '*'.repeat(String(item.pw).length),
+          pw: item.pw,
+          // pw: '*'.repeat(String(item.pw).length),
         };
       } else {
         return {
@@ -49,7 +49,8 @@ class AccountRepositories {
           number: item.number,
           onwer: item.onwer,
           balance: item.balance,
-          pw: '*'.repeat(String(item.pw).length),
+          pw: item.pw,
+          // pw: '*'.repeat(String(item.pw).length),
         };
       }
     });
@@ -58,13 +59,12 @@ class AccountRepositories {
   // 검색기능 1. 계좌번호 조회
   findByNumber(number) {
     const findData = this.accounts.findIndex((is) => is.number === number);
-    console.log(findData, 'accountRepository', number);
+
     return findData;
   }
   // 검색기능 2. 예금주 조회
   findByName(name) {
     const findData = this.accounts.filter((is) => is.onwer === name);
-
     return findData;
   }
   /**
