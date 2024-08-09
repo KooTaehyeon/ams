@@ -44,7 +44,7 @@ const loadAccounts = (JSON_FILE_PATH) => {
       if (accountData.loan !== undefined) {
         account = new MinusAccount(
           accountData.number,
-          accountData.password,
+          accountData.pw,
           accountData.onwer,
           accountData.balance,
           accountData.loan
@@ -52,7 +52,7 @@ const loadAccounts = (JSON_FILE_PATH) => {
       } else {
         account = new Account(
           accountData.number,
-          accountData.password,
+          accountData.pw,
           accountData.onwer,
           accountData.balance
         );
@@ -83,20 +83,20 @@ const printMenu = function () {
 // const account = new Account('110-428-308100', 12345, '구태현', 1900000);
 // const account2 = new Account('110-428-308101', 12345, '구태현1', 100000);
 // const account3 = new Account('110-428-308102', 12345, '구태현2', 100000);
-// const upaccount = new Account('110-428-308200', 12345, '구태현임', 1400000);
-// const minusAccount = new MinusAccount(
-//   '110-428-308100',
-//   12345,
-//   '구태현s',
-//   100000,
-//   2000
-// );
+const upaccount = new Account('110-428-308200', 12345, '구태현임', 1400000);
+const minusAccount = new MinusAccount(
+  '110-428-308100',
+  12345,
+  '구태현s',
+  100000,
+  2000
+);
 // accountRepository.addAccount(account0);
 // accountRepository.addAccount(account2);
 // accountRepository.addAccount(account);
 // accountRepository.addAccount(account3);
-// accountRepository.addAccount(minusAccount);
-// accountRepository.addAccount(upaccount);
+accountRepository.addAccount(minusAccount);
+accountRepository.addAccount(upaccount);
 
 const app = async function () {
   console.log(
@@ -134,7 +134,6 @@ const app = async function () {
         let password = parseInt(await readLine('- 비밀번호 : '));
         let initMoney = parseInt(await readLine('- 입금액 : '));
         let rentMoney = 0;
-        accountRepository;
 
         if (no === 1) {
           account = new Account(accountNum, password, accountOwner, initMoney);
@@ -202,9 +201,9 @@ const app = async function () {
         saveAccounts(accountRepository.findByAll());
         break;
       case 7:
-        saveAccounts(accountRepository.findByAll());
         console.log('>>> 프로그램을 종료합니다.');
         consoleInterface.close();
+        saveAccounts(accountRepository.findByAll());
         running = false;
         break;
       default:

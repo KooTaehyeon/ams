@@ -33,14 +33,15 @@ class AccountRepositories {
     //  복사본 주기
     const copyAccount = [...this.accounts];
     return copyAccount.map((item) => {
+      console.log(item, 'item');
       if (item.loan !== undefined) {
         return {
           title: '마이너스',
           number: item.number,
           onwer: item.onwer,
           balance: item.balance,
-          loan: item.loan,
           pw: item.pw,
+          loan: item.loan,
           // pw: '*'.repeat(String(item.pw).length),
         };
       } else {
