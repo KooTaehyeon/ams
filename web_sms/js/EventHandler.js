@@ -46,7 +46,7 @@ const submitEvent = (e) => {
   );
   repositort.addStudent(studentData);
   // setState로 state 변경과 렌더링 요청
-  localStorage.setItem('repositort', JSON.stringify(repositort));
+
   setRender(repositort);
 };
 
@@ -61,6 +61,7 @@ const searchStudent = () => {
   } else if (select === 'name') {
     complete = repositort.nameSearch(input);
   }
+
   setRender(complete, true);
 };
 
@@ -71,10 +72,11 @@ const changeStudent = () => {
   if (change === 'name') {
     complete = repositort.nameSort();
   } else if (change === 'ssn') {
-    complete = repositort.numberSort();
-  } else {
-    return setRender(repositort);
+    complete = repositort.numberSort('id');
+  } else if (change === 'rank') {
+    complete = repositort.numberSort('rank');
   }
+
   setRender(complete, true);
 };
 // 삭제
@@ -84,6 +86,7 @@ const deleteStudent = () => {
   const idExp = subjects(id.value.trim(), '학번');
   if (typeof idExp === 'string') return alert(subjects(id.value, '학번'));
   repositort.deleteStudent(id.value);
+  localStorage.setItem('repositort', JSON.stringify(repositort));
   setRender(repositort);
 };
 
@@ -115,6 +118,7 @@ const setRender = (newRender, copy) => {
   } else {
     state = newRender.student;
   }
+  localStorage.setItem('repositort', JSON.stringify(repositort));
   render();
 };
 if (localStorages) {

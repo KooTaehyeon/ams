@@ -9,12 +9,9 @@ export class StudentRepository {
       const copy = [...this.student];
       copy.push(obj);
       const studentRank = basicSort(copy, 'all');
-
       studentRank.forEach((element, idx) => {
         return element.addRank(idx + 1);
       });
-      // const rank = studentRank.map((item, idx) => {
-      //   return studentRank[idx].addRank(idx + 1);
       this.student = studentRank;
       return true;
     } else {
@@ -43,9 +40,10 @@ export class StudentRepository {
   nameSort() {
     return nameSort(this.student);
   }
-  numberSort() {
-    return numberSort(this.student, 'id');
+  numberSort(id) {
+    return numberSort(this.student, id);
   }
+
   deleteStudent(id) {
     const deleteStudent = this.student.filter((item) => item.id !== id);
     return (this.student = deleteStudent);

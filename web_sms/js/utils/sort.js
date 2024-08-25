@@ -1,5 +1,4 @@
 export function basicSort(array, text) {
-  console.log(text, 'text');
   const newArray = array.sort(function (a, b) {
     if (a[text] < b[text]) {
       return 1;
@@ -10,7 +9,7 @@ export function basicSort(array, text) {
     // a must be equal to b
     return 0;
   });
-  console.log(newArray);
+
   return newArray;
 }
 export function nameSort(array) {
@@ -20,7 +19,6 @@ export function nameSort(array) {
   return newArray;
 }
 export function numberSort(array, text) {
-  console.log(text);
   const newArray = array.sort(function (a, b) {
     if (Number(a[text]) > Number(b[text])) {
       return 1;
@@ -31,6 +29,5 @@ export function numberSort(array, text) {
     // a must be equal to b
     return 0;
   });
-  console.log(newArray);
   return newArray;
 }
